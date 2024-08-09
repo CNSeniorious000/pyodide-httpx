@@ -1,7 +1,7 @@
-from typing import AsyncIterable, Iterable
-from pyodide.ffi import run_sync
-from js import Promise
+from collections.abc import AsyncIterable, Iterable
 
+from js import Promise
+from pyodide.ffi import run_sync
 
 try:
     run_sync(Promise.resolve())

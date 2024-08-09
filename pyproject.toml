@@ -1,6 +1,6 @@
 [project]
 name = "pyodide-httpx"
-version = "0.1.0"
+version = "0.1.1"
 description = "patch httpx for using in pyodide"
 dependencies = ["httpx>=0.25.1"]
 requires-python = ">=3.12"
@@ -31,3 +31,18 @@ reportMissingModuleSource = false
 
 [tool.ruff]
 line-length = 200
+
+[tool.ruff.lint]
+extend-select = [
+    "I",    # isort
+    "W",    # pycodestyle
+    "UP",   # pyupgrade
+    "RUF",  # ruff
+    "FURB", # refurb
+    "C4",   # flake8-comprehensions
+    "ARG",  # flake8-unused-arguments
+    "PIE",  # flake8-pie
+    "PTH",  # flake8-use-pathlib
+    "RSE",  # flake8-raise
+    "SIM",  # flake8-simplify
+]
