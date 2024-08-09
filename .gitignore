@@ -1,0 +1,15 @@
+__pycache__/
+__pypackages__/
+
+.ipynb_checkpoints
+.vscode
+.fleet
+.idea
+
+*lock*
+.pdm*
+
+.env
+.venv
+
+dist
