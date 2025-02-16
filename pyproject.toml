@@ -1,8 +1,8 @@
 [project]
 name = "pyodide-httpx"
-version = "0.1.1"
+version = "0.1.2"
 description = "patch httpx for using in pyodide"
-dependencies = ["httpx>=0.25.1"]
+dependencies = ["httpx>=0.25.1,<0.28"]
 requires-python = ">=3.12"
 readme = "README.md"
 license = { file = "LICENSE" }
