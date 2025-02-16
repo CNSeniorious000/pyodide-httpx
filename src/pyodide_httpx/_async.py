@@ -1,10 +1,10 @@
 from contextlib import contextmanager
+from time import perf_counter
 
 from httpx._client import AsyncClient, BoundAsyncStream, logger
 from httpx._models import Headers, Request, Response
 from httpx._transports.default import AsyncResponseStream
 from httpx._types import AsyncByteStream
-from httpx._utils import Timer
 from js import Headers as js_Headers
 from pyodide.ffi import create_proxy
 from pyodide.http import pyfetch
@@ -34,8 +34,7 @@ async def js_readable_stream_iter(js_readable_stream):
 
 
 async def _send_single_request(self: AsyncClient, request: Request) -> Response:
-    timer = Timer()
-    await timer.async_start()
+    start = perf_counter()
 
     if not isinstance(request.stream, AsyncByteStream):
         raise RuntimeError("Attempted to send an sync request with an AsyncClient instance.")
@@ -56,7 +55,7 @@ async def _send_single_request(self: AsyncClient, request: Request) -> Response:
 
     assert isinstance(response.stream, AsyncByteStream)
     response.request = request
-    response.stream = BoundAsyncStream(response.stream, response=response, timer=timer)
+    response.stream = BoundAsyncStream(response.stream, response=response, start=start)
     self.cookies.extract_cookies(response)
     response.default_encoding = self._default_encoding
 
